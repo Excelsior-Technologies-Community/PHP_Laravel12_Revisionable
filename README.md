@@ -348,6 +348,7 @@ $post->disableRevision();
 
 MIT License
 
+<<<<<<< HEAD
 # PHP_Laravel12_Revisionable
 
 ## Overview
@@ -698,3 +699,5 @@ $post->disableRevision();
 
 MIT License
 
+=======
+>>>>>>> development

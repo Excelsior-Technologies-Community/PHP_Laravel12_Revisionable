@@ -14,3 +14,13 @@ Route::resource('posts', PostController::class);
 // Additional route for revisions
 Route::get('posts/{post}/revisions', [PostController::class, 'revisions'])
     ->name('posts.revisions');
+
+/*
+|--------------------------------------------------------------------------
+| NEW ROUTES
+|--------------------------------------------------------------------------
+*/
+
+Route::get('/revision-dashboard', [PostController::class, 'dashboard'])
+    ->name('revision.dashboard');
+
