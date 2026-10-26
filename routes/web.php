@@ -3,83 +3,69 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PostController;
 
-
 /*
 |--------------------------------------------------------------------------
-| Redirect Home
+| Web Routes
 |--------------------------------------------------------------------------
 */
 
 Route::get('/', function () {
-
     return redirect()->route('posts.index');
 });
-
-
 
 /*
 |--------------------------------------------------------------------------
 | Posts CRUD Routes
 |--------------------------------------------------------------------------
 */
-
-Route::resource(
-    'posts',
-    PostController::class
-);
-
-
+Route::resource('posts', PostController::class);
 
 /*
 |--------------------------------------------------------------------------
-| Revision History
+| Revision History & Management (Feature 1 & 2)
 |--------------------------------------------------------------------------
 */
-
-Route::get(
-    'posts/{post}/revisions',
-    [PostController::class, 'revisions']
-)
+Route::get('posts/{post}/revisions', [PostController::class, 'revisions'])
     ->name('posts.revisions');
 
-
-
-/*
-|--------------------------------------------------------------------------
-| Export Revision CSV
-|--------------------------------------------------------------------------
-*/
-
-Route::get(
-    'posts/{post}/revisions/export',
-    [PostController::class, 'exportCsv']
-)
+Route::get('posts/{post}/revisions/export', [PostController::class, 'exportCsv'])
     ->name('posts.revisions.export');
 
-
-
-/*
-|--------------------------------------------------------------------------
-| Delete All Revisions
-|--------------------------------------------------------------------------
-*/
-
-Route::delete(
-    'posts/{post}/revisions/delete-all',
-    [PostController::class, 'deleteAllRevisions']
-)
+Route::delete('posts/{post}/revisions/delete-all', [PostController::class, 'deleteAllRevisions'])
     ->name('posts.revisions.deleteAll');
 
+// 1-Click Field Revert & Snapshot Rollback (Feature 1)
+Route::post('posts/{post}/revisions/{revision}/revert-field', [PostController::class, 'revertField'])
+    ->name('posts.revisions.revertField');
 
+Route::post('posts/{post}/revisions/{revision}/rollback-snapshot', [PostController::class, 'rollbackSnapshot'])
+    ->name('posts.revisions.rollbackSnapshot');
+
+Route::get('posts/{post}/revisions/{revision}/preview-revert', [PostController::class, 'previewRevert'])
+    ->name('posts.revisions.previewRevert');
+
+// Visual Diff Studio & Arbitrary Comparison (Feature 2)
+Route::get('posts/{post}/revisions/{revision}/diff', [PostController::class, 'revisionDiff'])
+    ->name('posts.revisions.diff');
+
+Route::get('posts/{post}/revisions/compare', [PostController::class, 'compareRevisions'])
+    ->name('posts.revisions.compare');
 
 /*
 |--------------------------------------------------------------------------
-| Revision Analytics Dashboard
+| Time-Machine Snapshot Previewer (Feature 3)
 |--------------------------------------------------------------------------
 */
+Route::get('posts/{post}/time-machine', [PostController::class, 'timeMachine'])
+    ->name('posts.timeMachine');
 
-Route::get(
-    '/revision-dashboard',
-    [PostController::class, 'dashboard']
-)
+/*
+|--------------------------------------------------------------------------
+| Revision Analytics & Audit Report Studio (Feature 6)
+|--------------------------------------------------------------------------
+*/
+Route::get('/revision-dashboard', [PostController::class, 'dashboard'])
     ->name('revision.dashboard');
+
+Route::get('/revision-dashboard/audit-report', [PostController::class, 'auditReport'])
+    ->name('revision.auditReport');
