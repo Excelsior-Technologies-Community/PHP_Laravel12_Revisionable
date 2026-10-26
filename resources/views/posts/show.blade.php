@@ -24,25 +24,21 @@
 
 
 
-                <div>
-
-
-                    <a href="{{ route('posts.edit',$post) }}"
+                <div class="d-flex gap-2">
+                    <a href="{{ route('posts.edit', $post) }}"
                         class="btn btn-warning">
-
-                        Edit
-
+                        <i class="fa-solid fa-pen-to-square me-1"></i> Edit
                     </a>
 
+                    <a href="{{ route('posts.timeMachine', $post) }}"
+                        class="btn btn-primary fw-bold">
+                        <i class="fa-solid fa-clock me-1"></i> ⏳ Time-Machine
+                    </a>
 
-                    <a href="{{ route('posts.revisions',$post) }}"
+                    <a href="{{ route('posts.revisions', $post) }}"
                         class="btn btn-dark">
-
-                        All Revisions
-
+                        <i class="fa-solid fa-clock-rotate-left me-1"></i> Revisions ({{ $revisionCount }})
                     </a>
-
-
                 </div>
 
 
