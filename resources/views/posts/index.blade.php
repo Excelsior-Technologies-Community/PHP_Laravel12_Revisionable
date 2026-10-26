@@ -265,29 +265,24 @@
                         <td>
 
 
-                            <a href="{{ route('posts.show',$post) }}"
-                                class="btn btn-sm btn-info">
-
-                                View
-
+                            <a href="{{ route('posts.show', $post) }}"
+                                class="btn btn-sm btn-info text-white" title="View Details">
+                                <i class="fa-solid fa-eye"></i>
                             </a>
 
-
-
-                            <a href="{{ route('posts.edit',$post) }}"
-                                class="btn btn-sm btn-warning">
-
-                                Edit
-
+                            <a href="{{ route('posts.edit', $post) }}"
+                                class="btn btn-sm btn-warning" title="Edit Post">
+                                <i class="fa-solid fa-pen-to-square"></i>
                             </a>
 
+                            <a href="{{ route('posts.timeMachine', $post) }}"
+                                class="btn btn-sm btn-primary fw-bold" title="Time-Machine Snapshot Preview">
+                                ⏳
+                            </a>
 
-
-                            <a href="{{ route('posts.revisions',$post) }}"
-                                class="btn btn-sm btn-dark">
-
-                                Revisions
-
+                            <a href="{{ route('posts.revisions', $post) }}"
+                                class="btn btn-sm btn-dark" title="Revision Ledger">
+                                <i class="fa-solid fa-clock-rotate-left"></i>
                             </a>
 
 
